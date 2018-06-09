@@ -1,0 +1,22 @@
+#!/bin/bash
+# Run this with "qsub mupro.pbs -F simname"
+
+#PBS -l nodes=1:ppn=8         ## Requests 1 processor on 1 node
+#PBS -l walltime=48:00:00     ## Requests 24 hours of walltime
+#PBS -l pmem=2gb              ## Requests 2 gigabytes of memory per process
+#PBS -A open                  ## Specifies the allocation. Use -A open for open queue
+#PBS -j oe                    ## Requests that regular output and terminal output go to the same file
+
+module load intel impi mkl
+
+cd ~/scratch/mupro
+./Magnetic.exe > ~/$1.out
+cd ~
+
+mkdir ~/work/$1
+cp    ~/scratch/mupro/*.in ~/work/$1
+mv    ~/scratch/mupro/*.dat ~/work/$1
+
+zip -r work/$1.zip work/$1/*
+
+curl -T work/$1.zip # <dav target redacted>
