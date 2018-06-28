@@ -19,7 +19,16 @@ avEnergy2 = Transpose[Extract[avEnergy2,{2;;Length[avEnergy2]}]];
 MatrixPlot[avEnergy2]
 
 
-ListLogPlot[avEnergy[[columns[[2]]]],Joined->True,PlotLegends->columns[[1]], PlotTheme->"Detailed"]
+ListLogPlot[{avEnergy[[2]],avEnergy2[[2]]},Joined->True,ImageSize->Scaled[.7],PlotLabel->"Total Energy",PlotLegends->{"Single","Bicrystal: 45 Degree"}, PlotTheme->"Detailed"]
+
+
+ListLogPlot[{avEnergy[[4]],avEnergy2[[4]]},Joined->True,ImageSize->Scaled[0.7],PlotLabel->"Stray Field Energy",PlotLegends->{"Single","Bicrystal: 45 Degree"}, PlotTheme->"Detailed"]
+
+
+ListLogPlot[{avEnergy[[5]],avEnergy2[[5]]},Joined->True,ImageSize->Scaled[0.7],PlotLabel->"Anisotropy Energy",PlotLegends->{"Single","Bicrystal: 45 Degree"}, PlotTheme->"Detailed"]
+
+
+ListLogPlot[{avEnergy[[7]],avEnergy2[[7]]},Joined->True,ImageSize->Scaled[0.7],PlotLabel->"Exchange Energy",PlotLegends->{"Single","Bicrystal: 45 Degree"}, PlotTheme->"Detailed"]
 
 
 dFdt = Join[avEnergy[[2]],{0}] - Join[{0},avEnergy[[2]]];
